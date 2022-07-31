@@ -10,7 +10,7 @@ config = {
   "storageBucket": "pyrebase-lab.appspot.com",
   "messagingSenderId": "516181230238",
   "appId": "1:516181230238:web:33efb3dac1e952b8b2318f",
-  "databaseURL": ""
+  "databaseURL": "https://pyrebase-lab-default-rtdb.firebaseio.com/"
 }
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = "itay"
@@ -20,12 +20,16 @@ app.config['SECRET_KEY'] = "itay"
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
+db = firebase.database()
 
 @app.route('/', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        name = request.form['full_name']
+        username = request.form['username']
+        user: {"email": "email", "password": "password", "name" : "name", "username" : "username"}
         try:
             login_session['user'] = auth.sign_up_with_email_and_password(email, password)
             return render_template("add_tweet.html")
@@ -39,6 +43,7 @@ def signup():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+
         try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
             return render_template("add_tweet.html")
