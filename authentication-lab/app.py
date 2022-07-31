@@ -28,7 +28,7 @@ def signin():
         password = request.form['password']
         try:
             login_session['user'] = auth.sign_up_with_email_and_password(email, password)
-            return render_template(add_tweet.html)
+            return render_template("add_tweet.html")
         except:
             error = "authentication failed"
     return render_template("signin.html")
@@ -41,7 +41,7 @@ def signup():
         password = request.form['password']
         try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
-            return render_template(add_tweet.html)
+            return render_template("add_tweet.html")
         except:
             error = "authentication failed"
     return render_template("signup.html")
