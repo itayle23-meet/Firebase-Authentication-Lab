@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 import pyrebase
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
-app.config['SECRET_KEY'] = 'super-secret-key'
 
 config = {
   "apiKey": "AIzaSyCNTf-4ydAa1x2rWmhH7EXbmt7FI7NNtuA",
@@ -11,9 +9,12 @@ config = {
   "projectId": "pyrebase-lab",
   "storageBucket": "pyrebase-lab.appspot.com",
   "messagingSenderId": "516181230238",
-  "appId": "1:516181230238:web:33efb3dac1e952b8b2318f"
-  "databaseURL" : ""
+  "appId": "1:516181230238:web:33efb3dac1e952b8b2318f",
+  "databaseURL": ""
 }
+app = Flask(__name__, template_folder='templates', static_folder='static')
+app.config['SECRET_KEY'] = "itay"
+
 
 
 
